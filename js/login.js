@@ -13,7 +13,7 @@ async function autenticar(e) {
     senha: document.getElementById('senha').value
   };
 
-  const url = "https://13-web.vercel.app/login";
+  const url = "https://api-true.vercel.app/login";
 
   try {
     const response = await fetch(url, {

@@ -14,7 +14,7 @@ import { verificarAutenticacao } from './autorizar.js';
 const botaoSalvar = document.getElementById('submit');
 botaoSalvar.addEventListener('click', inserirUsuario);
 
-const url = "https://13-web.vercel.app/usuario";
+const url = "https://api-true.vercel.app/usuario";
 const token = localStorage.getItem('jwt');
 
 async function inserirUsuario(e) {

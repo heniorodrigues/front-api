@@ -9,7 +9,7 @@ export async function verificarAutenticacao() {
     }
 
     // Define a URL do endpoint de autenticação
-    const url = "https://13-web.vercel.app/auth";
+    const url = "https://api-true.vercel.app/auth";
 
     // Faz uma requisição GET 
     const res = await fetch(url, {

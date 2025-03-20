@@ -17,7 +17,7 @@ botaoSalvar.addEventListener('click', alterarUsuario);
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
-const url = `https://13-web.vercel.app/usuario/${id}`;
+const url = `https://api-true.vercel.app/usuario/${id}`;
 const token = localStorage.getItem('jwt');
 
 try {

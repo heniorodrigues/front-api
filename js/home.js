@@ -14,7 +14,7 @@ import { verificarAutenticacao } from './autorizar.js';
   } 
 })();
 
-const urlBase = "https://13-web.vercel.app";
+const urlBase = "https://api-true.vercel.app";
 
 const tabelaCorpo = document.getElementById("tabela-usuarios");
 tabelaCorpo.innerHTML = 'Aguarde...';
