@@ -1,23 +1,44 @@
-import { verificarAutenticacao } from './autorizar.js';
+const botaoLogin = document.querySelector('#bt-entrar');
+botaoLogin.addEventListener('click', autenticar);
 
-// Função anônima auto-executável assíncrona.
-// O ()() garante que ela seja executada imediatamente ao carregar o script
-(async () => {
-  // Chama a função 'verificarAutenticacao' de forma assíncrona e espera seu resultado.
-  const autenticado = await verificarAutenticacao();
+const areaMensagem = document.getElementById('msg');
 
-  // Obtém o elemento HTML com o ID 'loading-overlay' (o overlay de carregamento da página)
-  const overlay = document.getElementById('loading-overlay');
+async function autenticar(e) {
+  e.preventDefault(); 
 
-  // Obtém o elemento HTML com o ID 'conteudo-protegido' (o conteúdo restrito que deve ser exibido após autenticação)
-  const conteudo = document.getElementById('conteudo-protegido');
+  document.getElementById('msg').innerText = "Aguarde... ";
 
-  // Verifica se o usuário foi autenticado com sucesso
-  if (autenticado) {
-    // Remove o elemento 'overlay' do DOM, ocultando o texto "Carregando..." da tela
-    overlay.remove();
+  const dados = {
+    email: document.getElementById('email').value,
+    senha: document.getElementById('senha').value
+  };
 
-    // Altera o estilo do elemento 'conteudo' para 'block', tornando o conteúdo visível
-    conteudo.style.display = 'block';
-  } 
-})();
+  const url = "https://13-web.vercel.app/login";
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(dados)
+    });
+
+    console.log(response);
+
+    if (!response.ok) {
+      throw new Error("Email/Senha incorretos! - " + response.status);
+    }
+
+    const data = await response.json();
+
+    localStorage.setItem('jwt', data.token);
+
+    window.location.href = 'home.html';
+
+  } catch (error) {
+    areaMensagem.style = "color:red";
+    areaMensagem.innerHTML = error;
+  }
+}
